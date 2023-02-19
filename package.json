@@ -1,10 +1,10 @@
 {
-  "name": "edu_db_labs",
+  "name": "IO-16_open-data-management-system",
   "version": "2.1.0",
   "main": "index.js",
-  "description": "Databases labs template",
-  "repository": "https://github.com/boldak/dis-edu",
-  "author": "Andrey Boldak <boldak.andrey@gmail.com>",
+  "description": "Open data management system",
+  "repository": "https://github.com/ELSheadali/IO-16_open-data-management-system",
+  "author": "Our Team",
   "license": "ECL 2.0",
   "scripts": {
     "docs:dev": "npx vuepress dev docs",
