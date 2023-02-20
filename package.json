@@ -4,7 +4,7 @@
   "main": "index.js",
   "description": "Open data management system",
   "repository": "https://github.com/ELSheadali/IO-16_open-data-management-system",
-  "author": "Andrey Boldak <boldak.andrey@gmail.com>",
+  "author": "Our Team",
   "license": "ECL 2.0",
   "scripts": {
     "docs:dev": "npx vuepress dev docs",
