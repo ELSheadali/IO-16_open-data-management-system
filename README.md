@@ -1,11 +1,3 @@
-home: true
-actionText: Розпочати →
-actionLink: /intro/
-
-footer: "ECL 2.0 Licensed | Copyright © [YYYY] [Your Name]"
----
-
-
 **Виконали:** 
 
 * *студент 2-го курсу, групи ІО-16*<span padding-right:5em></span> **Макаренко Денис [Пошта: delmer1083@gmail.com, [Телеграм](https://t.me/Sheadal)]**
