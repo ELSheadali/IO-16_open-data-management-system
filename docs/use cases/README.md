@@ -2,17 +2,17 @@
 
 ### Загальна схема
 @startuml
-
-actor "Користувач" as User #eeeeaa 
-actor "Редактор" as Editor #eeeeaa 
-actor "Адміністратор" as Admin #eeeeaa
+skinparam actorStyle awesome
+actor "Користувач" as User #FFA500
+actor "Редактор" as Editor #008000
+actor "Адміністратор" as Admin  #9932CC
 
 usecase "Створення нового \nоблікового запису" as Registration 
 usecase "Авторизація" as Authorization 
-usecase "Взаємодія з даними" as InteractData #2cf25a 
+usecase "Взаємодія з даними" as InteractData #F4A460
 usecase "Редагування існуючих даних" as EditData 
-usecase "Управління даними \nсистеми" as ManageData #2cf25a 
-usecase "Управління редакторами \nсистеми" as ManageEditors #2cf25a
+usecase "Управління даними \nсистеми" as ManageData #F4A460
+usecase "Управління редакторами \nсистеми" as ManageEditors #F4A460
 
 Admin -u-|> Editor 
 Editor -u-|> User 
@@ -27,14 +27,14 @@ Admin -l-> ManageEditors
 
 ### Схема користувача
 @startuml
-
-actor "Користувач" as User #eeeeaa
+skinparam actorStyle awesome
+actor "Користувач" as User #FFA500
 
 usecase "Створення нового \nоблікового запису" as Registration 
 usecase "Авторизація" as Authorization 
-usecase "Взаємодія з даними" as InteractData #2cf25a 
-usecase "Пошук данних" as SearchData 
-usecase "Редагування даних" as EditData
+usecase "Взаємодія з даними" as InteractData #F4A460
+usecase "Запит на\nпошук данних" as SearchData 
+usecase "Запит на\nредагування даних" as EditData
 
 User -u-> Registration 
 User -u-> Authorization  
@@ -47,8 +47,8 @@ EditData .l.> InteractData :extends
 
 ### Схема Редактора
 @startuml
-
-actor "Редактор" as Editor #eeeeaa
+skinparam actorStyle awesome
+actor "Редактор" as Editor #008000
 
 usecase "Редагування розмітки файлу" as EditData
 
@@ -58,11 +58,11 @@ Editor -u-> EditData
 
 ### Схема Адміністратора
 @startuml
+skinparam actorStyle awesome
+actor "Адміністратор" as Admin  #9932CC
 
-actor "Адміністратор" as Admin #eeeeaa
-
-usecase "Управління даними \nсистеми" as ManageData #2cf25a 
-usecase "Управління редакторами \nсистеми" as ManageEditors #2cf25a 
+usecase "Управління даними \nсистеми" as ManageData #F4A460
+usecase "Управління редакторами \nсистеми" as ManageEditors #F4A460
 
 usecase "Видалення даних" as RemoveData 
 usecase "Зміна розмітки \nфайлу" as ChangeData 
@@ -139,7 +139,8 @@ stop;
 
 @startuml
 
-|Користувач| start
+|Користувач| 
+start
 
 :вводить авторизаційні
         дані;
