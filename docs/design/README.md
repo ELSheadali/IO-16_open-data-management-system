@@ -91,5 +91,71 @@ File.format -l-* File
 
 @enduml
 - ER-модель
+@startuml 
+
+
+entity USER <<ENTITY>>{
+user_id
+user_username
+user_email
+user_password
+user_registration
+user_firstname
+user_lastname
+}
+
+entity StaffLogin <<ENTITY>>{
+
+}
+
+entity Administrator <<ENTITY>>{
+ADM_delete
+ADM_view_branch
+ADM_upload
+ADM_editor_delete
+ADM_view_history
+ADM_annotation_chng
+ADM_editor_add
+}
+
+entity Editor <<ENTITY>>{
+}
+
+entity BRANCH <<ENTITY>> {
+branch_editor_id
+branch_branch_id
+}
+
+entity REQUEST <<ENTITY>>{
+}
+
+entity SEARCH <<ENTITY>>{
+SRCH_date
+SRCH_id
+SRCH_keyword
+SRCH_format
+}
+
+entity FILE <<ENTITY>> {
+file_name
+file_id
+file_description
+file_file_csv
+file_uploadDate
+file_format
+file_hasGraph
+}
+
+
+
+USER -- REQUEST
+REQUEST -- SEARCH
+SEARCH -- FILE
+USER -- StaffLogin
+StaffLogin -- Administrator
+Editor -- StaffLogin
+BRANCH -- Editor
+  
+@enduml
 - реляційна схема
 
