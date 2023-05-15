@@ -93,7 +93,6 @@ File.format -l-* File
 - ER-модель
 @startuml 
 
-
 entity USER <<ENTITY>>{
 user_id
 user_username
@@ -148,13 +147,13 @@ file_hasGraph
 
 
 
-USER -- REQUEST
-REQUEST -- SEARCH
-SEARCH -- FILE
-USER -- StaffLogin
-StaffLogin -- Administrator
-Editor -- StaffLogin
-BRANCH -- Editor
+USER"1,1" -- "0,*"REQUEST
+REQUEST"1,1" -- "0,*"SEARCH
+SEARCH"1,1" -- "0,*"FILE
+USER "1,1"--"0,1" StaffLogin
+StaffLogin"1,1" -- "0,*"Administrator
+Editor"0,*" -- "1,1"StaffLogin
+BRANCH"0,*" -- "1,1"Editor
   
 @enduml
 - реляційна схема
