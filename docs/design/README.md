@@ -153,4 +153,5 @@ BRANCH"0,*" -- "1,1"Editor
   
 @enduml
 - реляційна схема
+![SQL](https://github.com/ELSheadali/IO-16_open-data-management-system/assets/86313572/fb47c209-3389-4c61-b970-c9175cdd5599)
 
