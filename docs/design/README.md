@@ -94,13 +94,13 @@ File.format -l-* File
 @startuml 
 
 entity USER <<ENTITY>>{
-user_id
-user_username
-user_email
-user_password
-user_registration
-user_firstname
-user_lastname
+user_id:INT
+user_username:TEXT
+user_email:TEXT
+user_password:TEXT
+user_registration:BOOL
+user_firstname:TEXT
+user_lastname:TEXT
 }
 
 entity StaffLogin <<ENTITY>>{
@@ -108,44 +108,40 @@ entity StaffLogin <<ENTITY>>{
 }
 
 entity Administrator <<ENTITY>>{
-ADM_delete
-ADM_view_branch
-ADM_upload
-ADM_editor_delete
-ADM_view_history
-ADM_annotation_chng
-ADM_editor_add
+ADM_delete:OBJ
+ADM_view_branch:OBJ
+ADM_upload:OBJ
+ADM_editor_delete:OBJ
+ADM_view_history:OBJ
+ADM_annotation_chng:TEXT
+ADM_editor_add:INT
 }
 
 entity Editor <<ENTITY>>{
 }
 
 entity BRANCH <<ENTITY>> {
-branch_editor_id
-branch_branch_id
+branch_editor_id:INT
+branch_branch_id:INT
 }
 
 entity REQUEST <<ENTITY>>{
 }
 
 entity SEARCH <<ENTITY>>{
-SRCH_date
-SRCH_id
-SRCH_keyword
-SRCH_format
+SRCH_date:DATE
+SRCH_id:INT
+SRCH_keyword:TEXT
+SRCH_format:TEXT
 }
 
 entity FILE <<ENTITY>> {
-file_name
-file_id
-file_description
-file_file_csv
-file_uploadDate
-file_format
-file_hasGraph
+file_name:TEXT
+file_id:INT
+file_description:TEXT
+file_uploadDate:DATE
+file_format:TEXT
 }
-
-
 
 USER"1,1" -- "0,*"REQUEST
 REQUEST"1,1" -- "0,*"SEARCH
