@@ -1,7 +1,9 @@
 # Проєктування бази даних
 
 В рамках проекту розробляється: 
+
 - модель бізнес-об'єктів 
+
 @startuml 
 
 entity User 
@@ -90,7 +92,9 @@ File.format -l-* File
 
 
 @enduml
+
 - ER-модель
+
 @startuml 
 
 entity USER <<ENTITY>>{
@@ -152,6 +156,8 @@ Editor"0,*" -- "1,1"StaffLogin
 BRANCH"0,*" -- "1,1"Editor
   
 @enduml
+
 - реляційна схема
+
 ![SQL](https://github.com/ELSheadali/IO-16_open-data-management-system/assets/86313572/fb47c209-3389-4c61-b970-c9175cdd5599)
 
