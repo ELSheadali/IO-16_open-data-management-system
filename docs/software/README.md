@@ -189,7 +189,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 ```
 ## RESTfull сервіс для управління даними
-```RESTfull
+```python
 import fastapi
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
