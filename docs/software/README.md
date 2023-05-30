@@ -196,6 +196,9 @@ from fastapi.responses import JSONResponse
 import pymysql
 import uvicorn
 from fastapi import Form
+from datetime import datetime
+from fastapi import Query
+import json
 
 app = FastAPI()
 
@@ -247,12 +250,13 @@ def get_user_by_id(request: Request, id: int):
         raise fastapi.HTTPException(status_code=404)
     return JSONResponse(result)
 
+from datetime import date
+from fastapi.responses import JSONResponse
 
 @app.post('/api/adduser', status_code=201)
 async def add_new_user(request: Request, username: str, email: str, password: str):
     with open('UserId.txt', 'r') as file:
         last_id = file.read()
-        print(last_id)
         file.close()
     try:
         ID = str(int(last_id)+1)
@@ -301,6 +305,84 @@ def delete_user(request: Request, id: int):
     db.execute(f'DELETE FROM `user` WHERE idUSER={id}')
     return {'message': f'User with id={id} deleted'}
 
+import json
+from datetime import date
+
+import json
+from datetime import date
+
+import json
+from datetime import date
+
+@app.get("/api/allfiles")
+async def get_all_files(request: Request):
+    db = DataBase()
+    files = db.execute('SELECT * FROM file')
+    for file in files:
+        file['file_uploadDate'] = file['file_uploadDate'].strftime('%Y-%m-%d')
+
+    return JSONResponse(content=json.dumps(files))
+
+@app.get('/api/file/{id}')
+def get_file_by_id(request: Request, id: int):
+    db = DataBase()
+    result = db.execute(f'SELECT * FROM file WHERE idFILE={id}')
+    if not result:
+        raise fastapi.HTTPException(status_code=404)
+    file_data = result[0]  # Отримати перший елемент зі списку результатів
+    file_data['file_uploadDate'] = file_data['file_uploadDate'].strftime('%Y-%m-%d')
+    return JSONResponse(file_data)
+
+@app.post('/api/file', status_code=201)
+async def add_new_file(request: Request, name: str, des: str, format: str):
+    with open('FileId.txt', 'r') as file:
+        last_id = file.read()
+        if last_id == "":
+            last_id = 10
+        file.close()
+    try:
+        ID = str(int(last_id)+1)
+        date = datetime.now().date()
+        with open('FileId.txt', 'w') as file:
+            file.write(str(int(last_id)+1))
+            file.close()
+    except KeyError:
+        raise fastapi.HTTPException(status_code=400)
+    db = DataBase()
+    db.execute(f"INSERT INTO `file`(idFILE, file_name, file_description, file_uploadDate, file_format) "
+               f"VALUES ('{ID}','{name}','{des}','{date}','{format}');")
+    return {'message': 'New file added!'}
+
+@app.put('/api/updatefile/{id}')
+async def update_file(id: int, filename: str = Form(None), description: str = Form(None), date: str = Form(None)):
+    db = DataBase()
+    if not db.execute(f'SELECT * FROM file WHERE idFILE={id}'):
+        raise fastapi.HTTPException(status_code=404, detail='File not found')
+
+    if filename is None and description is None and date is None:
+        raise fastapi.HTTPException(status_code=400, detail='At least one field must be provided')
+
+    update_fields = []
+    if filename is not None:
+        update_fields.append(f'file_name="{filename}"')
+    if description is not None:
+        update_fields.append(f'file_description="{description}"')
+    if date is not None:
+        update_fields.append(f'file_uploadDate="{date}"')
+
+    update_query = ", ".join(update_fields)
+    db.execute(f'UPDATE file SET {update_query} WHERE idFILE={id}')
+    return {"message": 'Updated!'}
+
+@app.delete('/api/deletefile/{id}')
+def delete_file(request: Request, id: int):
+    db = DataBase()
+    result = db.execute(f'SELECT * FROM `file` WHERE idFILE={id}')
+    if not result:
+        raise fastapi.HTTPException(status_code=404)
+    db.execute(f'DELETE FROM `file` WHERE idFILE={id}')
+    return {'message': f'File with id={id} deleted'}
+
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=5049)
-```
+
